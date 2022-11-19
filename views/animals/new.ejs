@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <main>
+      <div>
+        <form action="/animals" method="POST">
+            <fieldset>
+                <legend>Create a New Fruit</legend>
+                <label>
+                    SPECIES:<input
+                    type="text"
+                    name="name"
+                    placeholder="enter animals name"
+                    />
+                </label>
+                <label>
+                    LOCATION:<input
+                    type="text"
+                    name="location"
+                    placeholder="enter animals location"
+                    />
+                </label>
+                <label>
+                    LIFE EXPECTANCY:<input
+                    type="text"
+                    name="lifeExpectancy"
+                    placeholder="enter animals life expectancy"
+                    />
+                </label>
+                <label>
+                    Extinct:<input
+                    type="checkbox"
+                    name="extinct"
+                    />
+                </label>
+            </fieldset>
+            <input type="submit" value="Create New Fruit"/>
+
+        </form>
+
+
+      </div>
+    </main>
+    
+</body>
+</html>
