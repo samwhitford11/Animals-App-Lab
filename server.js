@@ -94,6 +94,8 @@ app.post("/animals", (req, res) => {
     });
 });
 
+// Edit Route
+
 // Show Route
 app.get('/animals/:id', (req, res) => {
     const id = req.params.id
