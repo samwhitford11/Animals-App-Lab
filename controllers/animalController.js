@@ -11,7 +11,7 @@ const router = express.Router()
 
 router.get('/', (req,res) => {
     res.send("your server is running... better catch it.")
-})
+});
 
 
 
@@ -26,7 +26,7 @@ router.get('/animals', (req,res)=> {
 //New Route
 router.get('/animals/new', (req,res) => {
     res.render("animals/new.ejs")
-})
+});
 
 // Create Route / POST
 router.post("/animals", (req, res) => {
@@ -38,6 +38,37 @@ router.post("/animals", (req, res) => {
 });
 
 // Edit Route
+router.get('/animals/:id/edit', (req, res) => {
+    const id = req.params.id
+    // Find the animal and send it to the edit.ejs  to prepopulate the form
+    Animal.findById(id, (err, foundAnimal) => {
+        // res.json(foundAnimal)
+        res.render('animals/edit.ejs', { animal: foundAnimal })
+    });
+});
+
+router.put('/animals/:id', (req, res) => {
+    
+    req.body.extinct = req.body.extinct === 'on' ? true : false
+
+    Animal.findByIdAndUpdate(req.params.id, req.body, 
+        {new: true},(err, updateAnimal) => {
+        console.log(updateAnimal)
+
+        res.redirect(`/animals/${req.params.id}`)
+        
+    });
+});
+
+// Delete Route
+router.delete('/animals/:id', async (req, res) => {
+    Animal.findByIdAndDelete(req.params.id, (err, deletedAnimal) => {
+        console.log(err, deletedAnimal)
+        res.redirect('/animals')
+    });
+
+});
+
 
 // Show Route
 router.get('/animals/:id', (req, res) => {
